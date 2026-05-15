@@ -1,0 +1,25 @@
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        down = m -1
+        right = n -1 
+        
+        #inital state
+        dp = [[0]* n for _ in range (m)]
+
+        #only one way to reach first column adn first row
+        for row in range(m):
+
+            dp[row][0] = 1
+
+        for col in range(n):
+
+            dp[0][col] = 1
+
+        for row in range(1,m):
+            for col in range(1,n):
+                dp[row][col] = dp[row-1][col] + dp[row][col-1]
+
+        return dp[m-1][n-1]
+        
+
+
